@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- não envia a URL (com o code) para nenhum outro site -->
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<title>Clube da Garimpa — retorno da autorização</title>
+<style>
+  body { margin: 0; font-family: system-ui, "Segoe UI", sans-serif; background: #faf7f2; color: #1f1b16; }
+  main { max-width: 560px; margin: 12vh auto; padding: 24px; }
+  h1 { font-size: 20px; color: #1e5b4f; }
+  code { display: block; word-break: break-all; background: #fff; border: 1px solid #e8e1d6; border-radius: 8px; padding: 10px; font-size: 12px; }
+  button { margin-top: 12px; background: #1e5b4f; color: #fff; border: 0; border-radius: 8px; padding: 10px 14px; font-size: 14px; cursor: pointer; }
+  p { line-height: 1.5; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Autorização recebida</h1>
+  <p>Copie o endereço completo abaixo e cole em <b>Clube da Garimpa → Configurações → Mercado Livre → “Concluir”</b>. Ele vale por poucos minutos e só funciona no seu computador (PKCE).</p>
+  <code id="u"></code>
+  <button id="b" type="button">Copiar endereço</button>
+  <p id="s"></p>
+</main>
+<script>
+  // Página estática: não envia nada a lugar nenhum, só mostra a URL atual para você copiar.
+  var u = location.href;
+  document.getElementById("u").textContent = u;
+  document.getElementById("b").onclick = function () {
+    navigator.clipboard.writeText(u).then(function () { document.getElementById("s").textContent = "Copiado. Agora cole no Clube da Garimpa."; });
+  };
+  if (!/[?&]code=/.test(u)) document.getElementById("s").textContent = "Esta página só tem conteúdo depois de autorizar o app no Mercado Livre.";
+</script>
+</body>
+</html>
